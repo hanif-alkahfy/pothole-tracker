@@ -5,21 +5,29 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final List<String> imagePaths = [
+          'assets/images/img1.jpg',
+          'assets/images/img2.jpg',
+          'assets/images/img3.jpg',
+        ];
+
     return Scaffold(
       extendBodyBehindAppBar: true, // agar gradient naik sampai atas
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Container(
+          height: 50,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(32),
           ),
-          child: Row(
-            children: const [
+          child: const Row(
+            children: [
               Icon(Icons.menu, color: Colors.black54),
-              SizedBox(width: 15, height: 10,),
+              SizedBox(width: 15),
               Expanded(
                 child: Text(
                   "Search",
@@ -38,7 +46,7 @@ class HomeScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Color(0xFF66B2FF),
-              Color(0xFFD1C4E9),
+              Color(0xFF66B2FF),
             ],
           ),
         ),
@@ -49,39 +57,42 @@ class HomeScreen extends StatelessWidget {
               children: [
                 // Big Box
                 Container(
-                  height: 150,
+                  height: 200,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
+                    color: const Color.fromRGBO(255, 255, 255, 1).withOpacity(0.9),
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 75),
                 // Cards
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 3,
+                    itemCount: imagePaths.length,
                     itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.only(bottom: 12),
                       child: ListTile(
-                        tileColor: Colors.white.withOpacity(0.9),
+                        tileColor: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.9),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
                         leading: const CircleAvatar(
-                          backgroundColor: Color(0xFFE1BEE7),
+                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
                           child: Text("A"),
                         ),
-                        title: const Text("Header"),
-                        subtitle: const Text("Subhead"),
+                        title: Text("Header $index"),
+                        subtitle: Text("Subhead $index"),
                         trailing: SizedBox(
-                          width: 72,
+                          width: 50,
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Icon(Icons.change_history, color: Colors.grey),
-                              Icon(Icons.crop_square, color: Colors.grey),
-                              Icon(Icons.circle, color: Colors.grey),
+                            children: [
+                              Image.asset(
+                                imagePaths[index],
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
                             ],
                           ),
                         ),
